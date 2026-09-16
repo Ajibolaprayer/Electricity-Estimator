@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Electricity Estimator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <h1>⚡ Electricity Estimator</h1>
+            <p>Estimate your electricity usage and monthly cost</p>
+        </div>
+    </header>
+
+
+    <main class="container">
+
+        <!-- Dashboard -->
+        <section class="dashboard">
+
+            <div class="card">
+                <h3>Daily Usage</h3>
+                <p id="dailyUsage">0 kWh</p>
+            </div>
+
+            <div class="card">
+                <h3>Monthly Usage</h3>
+                <p id="monthlyUsage">0 kWh</p>
+            </div>
+
+            <div class="card">
+                <h3>Monthly Cost</h3>
+                <p id="monthlyCost">₦0</p>
+            </div>
+
+            <div class="card">
+                <h3>Days Remaining</h3>
+                <p id="daysRemaining">0 days</p>
+            </div>
+
+        </section>
+
+
+        <!-- Appliance Calculator -->
+        <section class="section">
+
+            <h2>Appliance Calculator</h2>
+
+            <p class="description">
+                Add the appliances you use in your home to estimate your
+                daily electricity consumption.
+            </p>
+
+            <div class="form-grid">
+
+                <div>
+                    <label>Appliance Name</label>
+                    <input
+                        type="text"
+                        id="applianceName"
+                        placeholder="e.g. Television"
+                    >
+                </div>
+
+                <div>
+                    <label>Power (Watts)</label>
+                    <input
+                        type="number"
+                        id="power"
+                        placeholder="e.g. 100"
+                    >
+                </div>
+
+                <div>
+                    <label>Quantity</label>
+                    <input
+                        type="number"
+                        id="quantity"
+                        value="1"
+                        min="1"
+                    >
+                </div>
+
+                <div>
+                    <label>Hours Per Day</label>
+                    <input
+                        type="number"
+                        id="hours"
+                        placeholder="e.g. 5"
+                        min="0"
+                    >
+                </div>
+
+            </div>
+
+            <button onclick="addAppliance()" class="primary-btn">
+                + Add Appliance
+            </button>
+
+
+            <!-- Appliance Table -->
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Appliance</th>
+                            <th>Power</th>
+                            <th>Qty</th>
+                            <th>Hours</th>
+                            <th>Daily kWh</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="applianceList">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- Tariff Calculator -->
+
+        <section class="section">
+
+            <h2>Electricity Cost Calculator</h2>
+
+            <div class="form-grid">
+
+                <div>
+                    <label>Electricity Tariff (₦/kWh)</label>
+
+                    <input
+                        type="number"
+                        id="tariff"
+                        value="200"
+                        min="0"
+                        onchange="calculateEverything()"
+                    >
+                </div>
+
+                <div>
+                    <label>Days in Month</label>
+
+                    <input
+                        type="number"
+                        id="daysInMonth"
+                        value="30"
+                        min="1"
+                        onchange="calculateEverything()"
+                    >
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Meter Calculator -->
+
+        <section class="section">
+
+            <h2>Meter Balance</h2>
+
+            <p class="description">
+                Enter your current electricity balance to estimate
+                how many days it may last.
+            </p>
+
+            <div class="form-grid">
+
+                <div>
+                    <label>Current Meter Balance (kWh)</label>
+
+                    <input
+                        type="number"
+                        id="meterBalance"
+                        placeholder="e.g. 50"
+                        min="0"
+                        onchange="calculateEverything()"
+                    >
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Summary -->
+
+        <section class="summary">
+
+            <h2>Electricity Summary</h2>
+
+            <div class="summary-row">
+                <span>Daily Consumption</span>
+                <strong id="summaryDaily">0 kWh</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Monthly Consumption</span>
+                <strong id="summaryMonthly">0 kWh</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Estimated Monthly Cost</span>
+                <strong id="summaryCost">₦0</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Estimated Days Remaining</span>
+                <strong id="summaryDays">0 days</strong>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>© 2026 Electricity Estimator</p>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
